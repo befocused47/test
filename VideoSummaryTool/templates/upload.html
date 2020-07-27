@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Geek Gang of 4</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+	<a href="index.html" class="logo"><strong>Geek Gang of 4</strong></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+	<a href="index.html">Home</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+	<ul class="links">
+		<li><a href="home.html">Home</a></li>
+		<li><a href="upload.html">Generic</a></li>
+		<li><a href="summarize.html">Elements</a></li>
+	</ul>
+</nav>
+
+<!-- Main -->
+<section id="banner" class="paddingless">
+	<div class="inner">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		{% block content %}
+		<form method="post" enctype="multipart/form-data">
+			<ul style="list-style-type:none;">
+			<li>
+				<input type="file" id="selectedFile" style="display: none;" name="videoFile" class="file_multi_video button alt scrolly big upload-video-file" accept="video/*">
+					<input type="button" value="Click to Choose Video" onclick="document.getElementById('selectedFile').click();" class="button alt scrolly big"/>
+					<br/><br/></li>
+			<li>
+			<video width="400" controls>
+					<source src="SampleVideo_1280x720_5mb.mp4" id="video_here">
+					Your browser does not support HTML5 video.
+				</video>
+			</li>
+			<li>
+				<br/><br/>
+			</li>
+		</ul>
+		{% csrf_token %}
+		<button  class="button alt scrolly big proceed" type="submit">Proceed to shorten the video</button>
+		</form>
+		{% endblock %}
+
+	</div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+	<ul class="icons">
+		<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+		<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+		<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+	</ul>
+	<div class="copyright">
+		&copy; Geek Gang of 4.
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/skel.min.js' %}"></script>
+
+</body>
+</html>

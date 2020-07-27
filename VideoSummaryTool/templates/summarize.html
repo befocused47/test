@@ -1,0 +1,152 @@
+<head>
+		<title>Geek Gang of 4</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
+	</head>
+	<body onload="myFunction()" style="margin:0;">
+	<div id="overlay" onclick="off()"></div>
+<script>
+var myVar;
+
+function myFunction() {
+	on();
+  myVar = setTimeout(showPage, 7000);
+  off();
+}
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="logo"><strong>Geek Gang of 4</strong></a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+				<a href="index.html">Home</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+<div id="loader"></div>
+		<!-- Main -->
+			<section id="banner" class="paddingless">
+				<div class="inner">
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+					<h3>Your Summarized Video</h3>
+
+					{% if uploaded_file_url %}
+					<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+					{% endif %}
+				<div class='video-prev' class="pull-right">
+					<video height="300" width="400" class="video-preview" controls="controls">
+						<source src="{{ MEDIA_URL }}{{ uploaded_file_url }}" type="video/mp4">
+					</video>
+				</div>
+				</div>
+			<a href="index.html"><span class="label">Back to Home</span></a>
+			</section>
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+				<div class="copyright">
+					&copy; Geek Gang of 4.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+	<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
+	<script src="{% static 'assets/js/util.js' %}"></script>
+	<script src="{% static 'assets/js/skel.min.js' %}"></script>
+
+	</body>
+</html>
